@@ -1,13 +1,15 @@
 import os
 
-from telegram import Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
     CommandHandler,
     MessageHandler,
+    CallbackQueryHandler,
     filters,
     ContextTypes
 )
+
 
 TOKEN ="8712010632:AAG1Qe0qHmCl2o9f8y0CVWvd_BnjfcPSOME"
 
@@ -18,7 +20,40 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Sizga yordam berishga tayyorman 🤖"
     )
 
+async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
 
+    await query.answer()
+
+    if query.data == "help":
+        text = (
+            "🆘 Yordam\n\n"
+            "Siz men bilan oddiy suhbatlashishingiz mumkin 😊\n\n"
+            "Masalan:\n"
+            "• Salom\n"
+            "• Sen kimsan?\n"
+            "• Nima qila olasan?\n"
+            "• Qalaysan?"
+        )
+
+    elif query.data == "about":
+        text = (
+            "ℹ️ Bot haqida\n\n"
+            "Men UZB_ALISA_BOTman 🤖\n"
+            "O‘zbek tilida suhbatlashuvchi AI yordamchiman 😊"
+        )
+
+    elif query.data == "contact":
+        text = (
+            "📞 Aloqa\n\n"
+            "Savol yoki taklifingiz bo‘lsa, shu yerga yozing 😊"
+        )
+
+    else:
+        text = "Noma’lum tugma 🤔"
+
+    await query.message.reply_text(text)
+    
 async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.lower()
 
@@ -144,6 +179,8 @@ async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 app = Application.builder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
+
+app.add_handler(CallbackQueryHandler(button_handler))
 
 app.add_handler(
     MessageHandler(
