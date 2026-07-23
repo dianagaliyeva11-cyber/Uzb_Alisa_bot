@@ -69,39 +69,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await query.message.reply_text(text)
 
-async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query
-
-    await query.answer()
-
-    if query.data == "help":
-        text = (
-            "🆘 Yordam\n\n"
-            "Siz men bilan oddiy suhbatlashishingiz mumkin 😊\n\n"
-            "Masalan:\n"
-            "• Salom\n"
-            "• Sen kimsan?\n"
-            "• Nima qila olasan?\n"
-            "• Qalaysan?"
-        )
-
-    elif query.data == "about":
-        text = (
-            "ℹ️ Bot haqida\n\n"
-            "Men UZB_ALISA_BOTman 🤖\n"
-            "O‘zbek tilida suhbatlashuvchi AI yordamchiman."
-        )
-
-    elif query.data == "contact":
-        text = (
-            "📞 Aloqa\n\n"
-            "Savol yoki taklifingiz bo‘lsa, shu yerga yozing 😊"
-        )
-
-    else:
-        text = "Noma'lum tugma 🤔"
-
-    await query.message.reply_text(text)
     
 async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.lower()
