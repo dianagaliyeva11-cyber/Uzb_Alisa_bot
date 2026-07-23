@@ -27,8 +27,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query
-    await query.answer()   
+        query = update.callback_query
+        
+    await query.answer() 
+    
    if query.data == "help":
         text = (
             "🆘 Yordam\n\n"
