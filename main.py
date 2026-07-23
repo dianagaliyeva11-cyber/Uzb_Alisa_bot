@@ -28,10 +28,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-
-    await query.answer()
-
-    if query.data == "help":
+    await query.answer()   
+   if query.data == "help":
         text = (
             "🆘 Yordam\n\n"
             "Siz men bilan oddiy suhbatlashishingiz mumkin 😊\n\n"
@@ -42,32 +40,31 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "• Qalaysan?"
         )
 
-    elif query.data == "about":
+   elif query.data == "about":
         text = (
             "ℹ️ Bot haqida\n\n"
             "Men UZB_ALISA_BOTman 🤖\n"
             "O‘zbek tilida suhbatlashuvchi AI yordamchiman."
         )
 
-    elif query.data == "contact":
+   elif query.data == "contact":
         text = (
             "📞 Aloqa\n\n"
             "Savol yoki taklifingiz bo‘lsa, shu yerga yozing 😊"
-        )
-
-    else:
+        ) 
+      
+   else:
         text = "Noma'lum tugma 🤔"
-
-    await query.message.reply_text(text)
+   await query.message.reply_text(text)
     
-    await update.message.reply_text(
+   await update.message.reply_text(
         "Salom! 👋 Men UZB_ALISA_BOTman 🤖\n"
         "Sizga yordam berishga tayyorman!\n"
         "Quyidagi tugmalardan birini tanlang:",
         reply_markup=reply_markup
     )
 
-    await query.message.reply_text(text)
+   await query.message.reply_text(text)
 
     
 async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
