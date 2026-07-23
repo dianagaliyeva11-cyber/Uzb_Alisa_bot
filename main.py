@@ -13,44 +13,25 @@ from telegram.ext import (
 
 TOKEN ="8712010632:AAG1Qe0qHmCl2o9f8y0CVWvd_BnjfcPSOME"
 
-
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [
+        [
+            InlineKeyboardButton("🆘 Yordam", callback_data="help"),
+            InlineKeyboardButton("ℹ️ Bot haqida", callback_data="about")
+        ],
+        [
+            InlineKeyboardButton("📞 Aloqa", callback_data="contact")
+        ]
+    ]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
     await update.message.reply_text(
-        "Salom! 👋 Men UZB_ALISA_BOTman.\n"
-        "Sizga yordam berishga tayyorman 🤖"
+        "Salom! 👋 Men UZB_ALISA_BOTman 🤖\n"
+        "Sizga yordam berishga tayyorman!\n"
+        "Quyidagi tugmalardan birini tanlang:",
+        reply_markup=reply_markup
     )
-
-async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query
-
-    await query.answer()
-
-    if query.data == "help":
-        text = (
-            "🆘 Yordam\n\n"
-            "Siz men bilan oddiy suhbatlashishingiz mumkin 😊\n\n"
-            "Masalan:\n"
-            "• Salom\n"
-            "• Sen kimsan?\n"
-            "• Nima qila olasan?\n"
-            "• Qalaysan?"
-        )
-
-    elif query.data == "about":
-        text = (
-            "ℹ️ Bot haqida\n\n"
-            "Men UZB_ALISA_BOTman 🤖\n"
-            "O‘zbek tilida suhbatlashuvchi AI yordamchiman 😊"
-        )
-
-    elif query.data == "contact":
-        text = (
-            "📞 Aloqa\n\n"
-            "Savol yoki taklifingiz bo‘lsa, shu yerga yozing 😊"
-        )
-
-    else:
-        text = "Noma’lum tugma 🤔"
 
     await query.message.reply_text(text)
     
