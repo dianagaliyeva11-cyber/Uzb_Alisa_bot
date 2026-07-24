@@ -1,17 +1,16 @@
-import os
-
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
     CommandHandler,
     MessageHandler,
     CallbackQueryHandler,
-    filters,
-    ContextTypes
+    ContextTypes,
+    filters
 )
 
 
-TOKEN ="8712010632:AAG1Qe0qHmCl2o9f8y0CVWvd_BnjfcPSOME"
+TOKEN = "123456789:AA..."
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
@@ -25,9 +24,21 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
-  
- async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    await update.message.reply_text(
+        "Salom! 👋 Men UZB_ALISA_BOTman 🤖\n"
+        "Sizga yordam berishga tayyorman!\n"
+        "Quyidagi tugmalardan birini tanlang:",
+        reply_markup=reply_markup
+    )
+
+
+async def button_handler(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE
+):
     query = update.callback_query
+
     await query.answer()
 
     if query.data == "help":
@@ -45,36 +56,49 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text = (
             "ℹ️ Bot haqida\n\n"
             "Men UZB_ALISA_BOTman 🤖\n"
-            "O'zbek tilida suhbatlashuvchi AI yordamchiman."
+            "O‘zbek tilida suhbatlashuvchi AI yordamchiman."
         )
 
     elif query.data == "contact":
         text = (
             "📞 Aloqa\n\n"
-            "Savol yoki taklifingiz bo'lsa, shu chatga yozing 😊"
+            "Savol yoki taklifingiz bo‘lsa, shu yerga yozing 😊"
         )
 
     else:
         text = "Noma'lum tugma 🤔"
 
-    await query.message.reply_text(text)   
-        
-async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await query.message.reply_text(text)
+
+
+async def message(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE
+):
     text = update.message.text.lower()
 
     if "salom" in text:
         javob = "Salom! 😊 Qalaysiz?"
 
-    elif "assalomu aleykum" in text or "assalomu alaykum" in text:
+    elif (
+        "assalomu aleykum" in text
+        or "assalomu alaykum" in text
+    ):
         javob = "Va alaykum assalom! 😊"
 
     elif "yaxshi" in text:
         javob = "Doimo yaxshi bo'ling-da! 😇"
 
-    elif "sen kimsan" in text or "isming nima" in text:
+    elif (
+        "sen kimsan" in text
+        or "isming nima" in text
+    ):
         javob = "Men ALISA AI yordamchiman 🤖"
 
-    elif "seni kim yaratdi" in text or "kim yaratdi" in text:
+    elif (
+        "seni kim yaratdi" in text
+        or "kim yaratdi" in text
+    ):
         javob = "Meni Olima yaratdi 🤖🔥"
 
     elif (
@@ -85,15 +109,25 @@ async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         javob = "Olima — meni yaratgan qiz! 😊"
 
     elif "seni yaratgan qiz haqida ma'lumot ber" in text:
-        javob = "Men u inson haqida to'liq ma'lumotga ega emasman!"
+        javob = (
+            "Men u inson haqida to'liq "
+            "ma'lumotga ega emasman!"
+        )
 
-    elif "sen qachon yaratilding" in text or "qachon yaratilding" in text:
+    elif (
+        "sen qachon yaratilding" in text
+        or "qachon yaratilding" in text
+    ):
         javob = "23-iyul 2026-yil! 🤖"
 
-    elif "nima qila olasan" in text or "nimalar qila olasan" in text:
+    elif (
+        "nima qila olasan" in text
+        or "nimalar qila olasan" in text
+    ):
         javob = (
             "Men siz bilan suhbatlasha olaman 🤖\n"
-            "Savollaringizga javob berishga harakat qilaman 😊"
+            "Savollaringizga javob berishga "
+            "harakat qilaman 😊"
         )
 
     elif (
@@ -107,7 +141,10 @@ async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         javob = "Yaxshiman 😊 Rahmat!"
 
     elif "rahmat" in text:
-        javob = "Arzimaydi 😊 Har doim yordam berishga tayyorman!"
+        javob = (
+            "Arzimaydi 😊 Har doim yordam berishga "
+            "tayyorman!"
+        )
 
     elif "xayr" in text:
         javob = "Xayr! 👋 Yana yozing 😊"
@@ -143,7 +180,10 @@ async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         javob = "Sizga yozyapman 🤪"
 
     elif "jonim rasm tasha" in text:
-        javob = "Meni botligim yodingizdan ko'tarilmasin 😂"
+        javob = (
+            "Meni botligim yodingizdan "
+            "ko'tarilmasin 😂"
+        )
 
     elif (
         "sog'inib kettimku" in text
@@ -151,10 +191,14 @@ async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ):
         javob = (
             "Men botman, inson emasman. "
-            "Siz xohlayotgan his-tuyg'uni bilmayman! 🤖"
+            "Siz xohlayotgan his-tuyg'uni "
+            "bilmayman! 🤖"
         )
 
-    elif "his ettiraymi" in text or "his qilishni xohlaysanmi" in text:
+    elif (
+        "his ettiraymi" in text
+        or "his qilishni xohlaysanmi" in text
+    ):
         javob = "Afsuski, buning iloji yo'q! 🤖"
 
     elif (
@@ -176,16 +220,23 @@ async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
     else:
-        javob = "Savolingizni tushunishga harakat qilyapman 🤖"
+        javob = (
+            "Savolingizni tushunishga "
+            "harakat qilyapman 🤖"
+        )
 
     await update.message.reply_text(javob)
 
 
 app = Application.builder().token(TOKEN).build()
 
-app.add_handler(CommandHandler("start", start))
+app.add_handler(
+    CommandHandler("start", start)
+)
 
-app.add_handler(CallbackQueryHandler(button_handler))
+app.add_handler(
+    CallbackQueryHandler(button_handler)
+)
 
 app.add_handler(
     MessageHandler(
