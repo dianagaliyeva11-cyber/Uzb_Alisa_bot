@@ -25,7 +25,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
-
+  
     async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         query = update.callback_query
         
